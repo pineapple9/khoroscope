@@ -14,8 +14,10 @@ public class PredictionServiceImpl implements PredictionService {
 
     PredictionDAO predictionDAO = (PredictionDAO) context.getBean("predictionDAO");
 
-    public Collection<Prediction> findPredictionByPredictionTypeCode(String predictionTypeCode) throws Exception{
-        return predictionDAO.findPredictionByPredictionTypeCode(predictionTypeCode);
+    public Collection<Prediction> findPredictionByParameter(String predictionTypeCode,String predictionCode) throws Exception{
+
+        return predictionDAO.findPredictionByParameter(predictionTypeCode,predictionCode);
+
     }
 
 

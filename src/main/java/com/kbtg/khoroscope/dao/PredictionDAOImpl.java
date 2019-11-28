@@ -33,7 +33,7 @@ public class PredictionDAOImpl implements PredictionDAO{
     }
 
     @Override
-    public Collection<Prediction> findPredictionByPredictionTypeCode(String predictionTypeCode) throws SQLException {
+    public Collection<Prediction> findPredictionByParameter(String predictionTypeCode,String predictionCode) throws SQLException {
 
         System.out.println("datasource ==> "+dataSource);
 
@@ -54,11 +54,22 @@ public class PredictionDAOImpl implements PredictionDAO{
                 " from horoscope.prediction predict " +
                 " join horoscope.prediction_type predictType on predict.prediction_type_fk = predictType.id" +
                 " where predictType.prediction_type_code = ? ";
+
+        System.out.println("predictionTypeCode ==> "+predictionTypeCode);
+        System.out.println("predictionCode ==> "+predictionCode);
+        if(null != predictionCode){
+            query += " and predict.prediction_code = ? ";
+        }
+        System.out.println("query ==> "+query);
         try (Connection conn = dataSource.getConnection();) {
 
             PreparedStatement preparedStatement = conn.prepareStatement(query);
+            int i =1;
+            preparedStatement.setString(i++, predictionTypeCode);
 
-            preparedStatement.setString(1, predictionTypeCode);
+            if(null != predictionCode){
+                preparedStatement.setString(i++, predictionCode);
+            }
 
             ResultSet resultSet = preparedStatement.executeQuery();
 

@@ -25,7 +25,7 @@ public class PredictionController {
     }
 
     @GetMapping("/getPrediction")
-    public String hello(String predictionTypeCode) throws Exception{
+    public String hello(String predictionTypeCode,String predictionCode) throws Exception{
         System.out.println("hello" + predictionTypeCode);
 
         if(null == predictionTypeCode){
@@ -33,7 +33,7 @@ public class PredictionController {
         }
 
         PredictionService gypsyService = new PredictionServiceImpl();
-        return new Gson().toJson(gypsyService.findPredictionByPredictionTypeCode(predictionTypeCode));
+        return new Gson().toJson(gypsyService.findPredictionByParameter(predictionTypeCode,predictionCode));
 
         //return "Hello K Horoscope!!!!";
     }

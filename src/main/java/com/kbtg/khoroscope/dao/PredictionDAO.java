@@ -7,6 +7,6 @@ import java.util.Collection;
 
 public interface PredictionDAO {
 
-    public Collection<Prediction> findPredictionByPredictionTypeCode(String predictionTypeOcde) throws SQLException;
+    public Collection<Prediction> findPredictionByParameter(String predictionTypeCode,String predictionCode) throws SQLException;
 
 }

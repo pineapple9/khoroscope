@@ -6,6 +6,6 @@ import java.util.Collection;
 
 public interface PredictionService {
 
-    public Collection<Prediction> findPredictionByPredictionTypeCode(String predictionTypeCode) throws Exception;
+    public Collection<Prediction> findPredictionByParameter(String predictionTypeCode,String predictionCode) throws Exception;
 
 }
